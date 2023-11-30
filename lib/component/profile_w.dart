@@ -4,7 +4,7 @@ import 'package:project/models/profile_class.dart';
 
 import 'description.dart';
 
-Widget myProfiles(Profile profile, double height, double width, int index) {
+Widget myProfiles(Profile profile, double height, double width, int index, BuildContext context) {
   return Container(
     decoration: BoxDecoration(
         color: const Color.fromARGB(255, 22, 22, 22),
@@ -54,7 +54,7 @@ Widget myProfiles(Profile profile, double height, double width, int index) {
           ],
         ),
         padraoDescricaoCard(profile.description, 20),
-        botaoDark("Contratar", profile.userId),
+        botaoDark("Contratar", profile, index, context),
       ],
     ),
   );

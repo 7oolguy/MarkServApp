@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:project/component/my_textfield.dart';
+import 'package:project/pages/intro_page.dart';
 
 import '../component/category.dart';
 import '../component/profile_w.dart';
@@ -16,6 +17,7 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   final _searchController = TextEditingController();
+  var _currentIndex = 1;
 
   int counter(List<Profile> count) {
     return count.length;
@@ -23,6 +25,21 @@ class _HomePageState extends State<HomePage> {
 
   int counterMap(List<Map<String, dynamic>> count) {
     return count.length;
+  }
+
+  void _loadScreen() {
+    switch(_currentIndex) {
+      case 0: Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const IntroPage()),
+                );
+                break;
+      case 1: Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const HomePage()),
+                );
+                break;
+    }
   }
 
   List<Map<String, dynamic>> sections = [
@@ -76,7 +93,8 @@ class _HomePageState extends State<HomePage> {
       "lorem ipsum dolor lorem in dolor lore tempor inv Donec id lorem ipsum dolor lorem in dolor lore tempor inv Donec id",
       "None",
       1010,
-      "assets/img/profPic.png",
+      "assets/img/profile/men1.png",
+      5
     ),
     Profile(
       "Ricardo Neymar",
@@ -85,7 +103,28 @@ class _HomePageState extends State<HomePage> {
       "lorem ipsum dolor lorem in dolor lore tempor inv Donec id lorem ipsum dolor lorem in dolor lore tempor inv Donec id",
       "None",
       1011,
-      "assets/img/profPic.png",
+      "assets/img/profile/men2.png",
+      1.2
+    ),
+    Profile(
+      "Amanda Rodrigo",
+      26,
+      "Secretaria",
+      "lorem ipsum dolor lorem in dolor lore tempor inv Donec id lorem ipsum dolor lorem in dolor lore tempor inv Donec id",
+      "None",
+      1101,
+      "assets/img/profile/women1.png",
+      3
+    ),
+    Profile(
+      "Carol Rafaela",
+      31,
+      "Organiza | Limpa | Conserta",
+      "lorem ipsum dolor lorem in dolor lore tempor inv Donec id lorem ipsum dolor lorem in dolor lore tempor inv Donec id",
+      "None",
+      1111,
+      "assets/img/profile/women2.png",
+      4.1
     ),
   ];
 
@@ -93,6 +132,7 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         backgroundColor: const Color(0xff0C1316),
         title: Image.asset(
           'assets/img/nome_dark.png',
@@ -128,7 +168,7 @@ class _HomePageState extends State<HomePage> {
               return const SizedBox(width: 10);
             },
             itemBuilder: (context, index) {
-              return myProfiles(profile[index], 300, 300, index);
+              return myProfiles(profile[index], 300, 300, index, context);
             },
           ),
         ),
@@ -171,6 +211,11 @@ class _HomePageState extends State<HomePage> {
         )
       ]),
       bottomNavigationBar: BottomNavigationBar(
+          currentIndex: _currentIndex,
+          onTap: (index) {
+          setState(() => _currentIndex = index);
+          _loadScreen();
+          },
           backgroundColor: const Color(0xff0C1316),
           unselectedLabelStyle:
               const TextStyle(color: Colors.white, fontSize: 14),

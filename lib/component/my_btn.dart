@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:project/models/profile_class.dart';
+import 'package:project/pages/templates/profile_page.dart';
 
-Widget botaoDark(String conteudo, int profileId) {
+Widget botaoDark(String conteudo, Profile profile, int index, BuildContext context) {
+
   return Padding(
       padding: const EdgeInsets.fromLTRB(0, 15, 0, 0),
       child: OutlinedButton(
@@ -12,7 +15,7 @@ Widget botaoDark(String conteudo, int profileId) {
                 RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
           ),
           onPressed: () => {
-                //open the person profile page,
+                Navigator.push(context, MaterialPageRoute(builder: (context) => ProfilePage(index: index, profile: profile)))
               },
           child: Text(conteudo,
               style: const TextStyle(

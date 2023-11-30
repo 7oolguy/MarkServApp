@@ -5,7 +5,7 @@ Widget category(List<Map<dynamic, dynamic>> sections, index) {
   String id = sections[index]["categId"];
   
   return Container(
-      decoration: BoxDecoration(color: Colors.black,
+      decoration: BoxDecoration(color: Color.fromARGB(255, 22, 22, 22),
       borderRadius: BorderRadius.circular(20),
       ),
       height: 50,
@@ -19,7 +19,7 @@ Widget category(List<Map<dynamic, dynamic>> sections, index) {
                 width: 500,
                 height: 100,
                 decoration: BoxDecoration(
-                    color: Colors.black,
+                    color: Color.fromARGB(255, 22, 22, 22),
                     borderRadius: BorderRadius.circular(20),
                 ),
                 child: Row(
